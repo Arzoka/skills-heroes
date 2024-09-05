@@ -1,0 +1,269 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--accent: #ec4e20;
+	--accentboxshadow: #ec4e2030;
+	--primary: #353531;
+	--primarytext: #ffffff;
+}
+
+html {
+	font-family: sans-serif;
+}
+
+body {
+	width: 100%;
+	min-height: 100dvh;
+	background: var(--primary);
+	color: var(--primarytext);
+}
+
+header {
+	display: flex;
+	align-items: center;
+	height: 5rem;
+	background: var(--accent);
+	padding-inline: 1rem;
+	border-bottom: 1px dotted var(--primarytext);
+}
+
+header img {
+	height: 80%;
+	object-fit: contain;
+}
+
+footer {
+	display: flex;
+	align-items: center;
+}
+
+#products-wrapper {
+	padding: 2rem;
+	width: 100%;
+	display: grid;
+	place-items: center;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+#products-wrapper .product-container {
+	padding: 0.5rem;
+	aspect-ratio: 1/1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid #ffffff50;
+	border-radius: 2rem;
+	width: 95%;
+	cursor: pointer;
+	transition: border 0.2s;
+}
+
+#products-wrapper .product-container figure {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#products-wrapper .product-container img {
+	object-fit: contain;
+	width: 80%;
+	transition: width 0.2s;
+}
+
+#products-wrapper .product-container:hover {
+	border: 1px solid var(--accent);
+}
+
+#products-wrapper .product-container:hover img {
+	width: 85%;
+}
+
+.modal-wrapper {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100dvh;
+	display: none;
+	place-items: center;
+	animation: fadeinfrombottom 0.2s linear forwards;
+}
+
+.modal-wrapper figure {
+	padding: 1rem;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	width: 60%;
+	aspect-ratio: 16/9;
+	background: var(--primary);
+	border: 2px dotted var(--accent);
+}
+
+.modal-wrapper figure #close-button {
+	left: 15px;
+	top: 5px;
+	position: absolute;
+	background: none;
+	outline: none;
+	border: none;
+	font-size: 2rem;
+	text-align: center;
+	cursor: pointer;
+	color: var(--primarytext);
+	z-index: 999;
+}
+
+.modal-wrapper figure .modal-img-wrapper {
+	position: relative;
+	width: 60%;
+	height: 100%;
+	padding: 5rem;
+}
+
+.modal-wrapper figure .modal-img-wrapper .product-symbol {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	object-fit: contain;
+	width: 3rem;
+}
+
+.modal-wrapper figure .modal-img-wrapper img {
+	width: 80%;
+	object-fit: contain;
+}
+
+.modal-wrapper figure aside {
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.modal-wrapper figure aside .colours-container {
+	display: flex;
+	align-items: center;
+	overflow-x: scroll;
+	max-width: 100%;
+	gap: 0.375rem;
+}
+
+.modal-wrapper figure aside .symbols-container {
+	display: flex;
+	align-items: center;
+	overflow-x: scroll;
+	max-width: 100%;
+	gap: 0.375rem;
+}
+
+.modal-wrapper figure aside .colours-container .colour-button {
+	aspect-ratio: 1/1;
+	min-width: 3rem;
+	max-width: 3rem;
+	border-radius: 50%;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	background: var(--accent);
+	color: var(--primarytext);
+}
+
+.modal-wrapper figure aside .symbols-container .symbol-button {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 1/1;
+	min-width: 3rem;
+	max-width: 3rem;
+	border-radius: 50%;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	background: var(--accent);
+	color: var(--primarytext);
+	overflow: hidden;
+}
+
+.modal-wrapper figure aside .symbols-container .symbol-button img {
+	max-width: 95%;
+	max-height: 95%;
+	object-fit: contain;
+}
+
+#purchase-button {
+	background: var(--accent);
+	color: var(--primarytext);
+	border: 1px solid var(--primarytext);
+	font-weight: bolder;
+	cursor: pointer;
+	height: 3rem;
+}
+
+@keyframes fadeinfrombottom {
+	from {
+		transform: translateY(1rem);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 860px) {
+	#modal figure {
+		flex-direction: column;
+	}
+
+	#modal figure .modal-img-wrapper {
+		width: 80%;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	#modal figure aside {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 748px) {
+	#products-wrapper {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media screen and (max-width: 624px) {
+	#products-wrapper {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+}
+
+@media screen and (max-width: 512px) {
+	#products-wrapper {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.modal-wrapper figure aside .symbols-container .symbol-button {
+		min-width: 2rem;
+		max-width: 2rem;
+	}
+
+	.modal-wrapper figure aside .colours-container .colour-button {
+		min-width: 2rem;
+		max-width: 2rem;
+		font-size: 0.75em;
+	}
+
+	#modal figure {
+		aspect-ratio: auto;
+		width: 100%;
+		padding: 0;
+	}
+}
